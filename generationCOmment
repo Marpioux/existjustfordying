@@ -11,9 +11,9 @@ generationComment: aRequest
 	
 	class_summary :=  self classSummary: (jsonData first at: 'classFullName').
 	methods_summaries := self methodsSummaries: (jsonData first at: 'classFullName').
-	
 	prompt := self buildPrompt: jsonData, class_summary, methods_summaries.
 	1 halt.
+	OUIOUOJND
 	
 	
 	

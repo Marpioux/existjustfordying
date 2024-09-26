@@ -1,0 +1,19 @@
+"protocol: #'as yet unclassified'"
+
+generationComment: aRequest
+
+	<REST_API: 'GET' versions: #( 'v1' ) pattern: 'comment/generation/<aTypeName>'>
+	| typeName method jsonData class_summary methods_summaries prompt |
+	
+	typeName := PromptHandler getRequest: aRequest param: #aTypeName as: #asString.
+	method := PromptHandler retrieveMethods: typeName.
+	jsonData := (NeoJSONObject fromString: method).
+	
+	class_summary :=  self classSummary: (jsonData first at: 'classFullName').
+	methods_summaries := self methodsSummaries: (jsonData first at: 'classFullName').
+	
+	prompt := self buildPrompt: jsonData, class_summary, methods_summaries.
+	1 halt.
+	
+	
+	
